@@ -9,9 +9,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button aboutButton;
-    private Button simpleButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
-        aboutButton = findViewById(R.id.aboutButton);
-        simpleButton = findViewById(R.id.simpleButton);
+        Button aboutButton = findViewById(R.id.aboutButton);
+        Button simpleButton  = findViewById(R.id.simpleButton);
+        Button advancedButton = findViewById(R.id.advancedButton);
 
         aboutButton.setOnClickListener((view) -> {
             Intent intent = new Intent(this, AboutActivity.class);
@@ -31,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         simpleButton.setOnClickListener((view) -> {
             Intent intent = new Intent(this, SimpleCalculatorActivity.class);
+            startActivity(intent);
+        });
+
+        advancedButton.setOnClickListener((view) -> {
+            Intent intent = new Intent(this, AdvancedCalculatorActivity.class);
             startActivity(intent);
         });
     }

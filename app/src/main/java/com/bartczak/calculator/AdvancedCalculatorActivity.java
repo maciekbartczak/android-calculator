@@ -17,6 +17,7 @@ public class AdvancedCalculatorActivity extends AppCompatActivity {
     private String expression = "";
     private TextView output;
     private final ArrayList<Button> inputButtons = new ArrayList<>();
+    private final ArrayList<Button> advancedInputButtons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +43,24 @@ public class AdvancedCalculatorActivity extends AppCompatActivity {
         inputButtons.add(findViewById(R.id.button_times));
         inputButtons.add(findViewById(R.id.button_div));
         inputButtons.add(findViewById(R.id.button_comma));
+        inputButtons.add(findViewById(R.id.button_left_bracket));
+        inputButtons.add(findViewById(R.id.button_right_bracket));
+        inputButtons.add(findViewById(R.id.button_percent));
+
+        advancedInputButtons.add(findViewById(R.id.button_sin));
+        advancedInputButtons.add(findViewById(R.id.button_cos));
+        advancedInputButtons.add(findViewById(R.id.button_tan));
+        advancedInputButtons.add(findViewById(R.id.button_log));
+        advancedInputButtons.add(findViewById(R.id.button_ln));
+        advancedInputButtons.add(findViewById(R.id.button_sqrt));
 
         Button clearButton = findViewById(R.id.button_c);
         Button backspaceButton = findViewById(R.id.button_bksp);
         Button equalsButton = findViewById(R.id.button_equals);
         Button signButton = findViewById(R.id.button_sign);
-        Button sinButton = findViewById(R.id.button_sin);
-        Button cosButton = findViewById(R.id.button_cos);
-        Button tanButton = findViewById(R.id.button_tan);
-        Button logButton = findViewById(R.id.button_log);
-        Button lnButton = findViewById(R.id.button_ln);
-        Button sqrtButton = findViewById(R.id.button_sqrt);
+
         Button power2Button = findViewById(R.id.button_power_2);
         Button powerButton = findViewById(R.id.button_power);
-        Button percentButton = findViewById(R.id.button_percent);
-
 
         output = findViewById(R.id.output);
         output.setSelected(true);
@@ -67,6 +71,15 @@ public class AdvancedCalculatorActivity extends AppCompatActivity {
                 expression = "";
             }
             expression += value;
+            output.setText(expression);
+        }));
+
+        advancedInputButtons.forEach(button -> button.setOnClickListener((view) -> {
+            final String value = button.getText().toString();
+            if (expression.contains("NaN")) {
+                expression = "";
+            }
+            expression += value + "(";
             output.setText(expression);
         }));
 
@@ -106,10 +119,15 @@ public class AdvancedCalculatorActivity extends AppCompatActivity {
             output.setText(expression);
         });
 
-        sinButton.setOnClickListener(view -> {
-            expression += "sin(";
+        power2Button.setOnClickListener(view -> {
+            expression += "^2";
             output.setText(expression);
         });
+
+        powerButton.setOnClickListener(view -> {
+            expression += "^";
+            output.setText(expression);
+        } );
 
     }
 

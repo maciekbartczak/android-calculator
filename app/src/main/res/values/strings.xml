@@ -29,10 +29,12 @@
     <string name="sin_label">sin</string>
     <string name="cos_label">cos</string>
     <string name="tan_label">tan</string>
-    <string name="log_label">log</string>
+    <string name="log_label">log10</string>
     <string name="ln_label">ln</string>
     <string name="sqrt_label">sqrt</string>
     <string name="power_2_label">x^2</string>
     <string name="power_label">x^y</string>
     <string name="percent_label">%</string>
+    <string name="left_bracket_label">(</string>
+    <string name="right_bracket_label">)</string>
 </resources>

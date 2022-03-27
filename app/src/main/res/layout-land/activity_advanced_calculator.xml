@@ -264,8 +264,24 @@
                 android:id="@+id/button_sqrt"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:text="@string/sqrt_label" />
+
+            <Button
+                android:id="@+id/button_left_bracket"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="@string/left_bracket_label" />
+
+            <Button
+                android:id="@+id/button_right_bracket"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/right_bracket_label" />
 
         </TableRow>
     </TableLayout>
