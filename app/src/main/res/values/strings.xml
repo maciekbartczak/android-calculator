@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="simple_label">Simple</string>
+    <string name="advanced_label">Advanced</string>
+    <string name="about_label">About</string>
+    <string name="exit_label">Exit</string>
+    <string name="about_info">Calculator app</string>
+    <string name="about_author">Author: Maciej Bartczak</string>
+    <string name="button_0">0</string>
+    <string name="button_1">1</string>
+    <string name="button_2">2</string>
+    <string name="button_3">3</string>
+    <string name="button_4">4</string>
+    <string name="button_5">5</string>
+    <string name="button_6">6</string>
+    <string name="button_7">7</string>
+    <string name="button_8">8</string>
+    <string name="button_9">9</string>
+    <string name="button_plus">+</string>
+    <string name="button_minus">-</string>
+    <string name="button_times">*</string>
+    <string name="button_div">/</string>
+    <string name="button_c">AC</string>
+    <string name="button_bksp">Bksp</string>
+    <string name="button_sign">+/-</string>
+    <string name="button_equals">=</string>
+    <string name="button_separator">.</string>
+    <string name="output_label">Input</string>
+    <string name="sin_label">sin</string>
+    <string name="cos_label">cos</string>
+    <string name="tan_label">tan</string>
+    <string name="log_label">log</string>
+    <string name="ln_label">ln</string>
+    <string name="sqrt_label">sqrt</string>
+    <string name="power_2_label">x^2</string>
+    <string name="power_label">x^y</string>
+    <string name="percent_label">%</string>
+</resources>
