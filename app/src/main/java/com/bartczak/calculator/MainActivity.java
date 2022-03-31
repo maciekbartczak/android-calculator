@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         Button aboutButton = findViewById(R.id.aboutButton);
         Button simpleButton  = findViewById(R.id.simpleButton);
         Button advancedButton = findViewById(R.id.advancedButton);
+        Button exitButton = findViewById(R.id.exitButton);
 
         aboutButton.setOnClickListener((view) -> {
             Intent intent = new Intent(this, AboutActivity.class);
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         advancedButton.setOnClickListener((view) -> {
             Intent intent = new Intent(this, AdvancedCalculatorActivity.class);
             startActivity(intent);
+        });
+
+        exitButton.setOnClickListener((view) -> {
+            finish();
         });
     }
 }

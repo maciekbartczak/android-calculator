@@ -11,13 +11,17 @@ import android.widget.Toast;
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdvancedCalculatorActivity extends AppCompatActivity {
+
+    private final static List<Character> NUMBERS = List.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 
     private String expression = "";
     private TextView output;
     private final ArrayList<Button> inputButtons = new ArrayList<>();
     private final ArrayList<Button> advancedInputButtons = new ArrayList<>();
+    private int lastNumberStartIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,13 @@ public class AdvancedCalculatorActivity extends AppCompatActivity {
 
         inputButtons.forEach(button -> button.setOnClickListener((view) -> {
             final String value = button.getText().toString();
+
+            if (NUMBERS.contains(value.charAt(0))) {
+                if (expression.length() > 0 && !NUMBERS.contains(expression.charAt(expression.length() - 1))) {
+                    lastNumberStartIndex = expression.length();
+                }
+            }
+
             if (expression.contains("NaN")) {
                 expression = "";
             }
@@ -85,34 +96,47 @@ public class AdvancedCalculatorActivity extends AppCompatActivity {
 
         clearButton.setOnClickListener(view -> {
             expression = "";
+            lastNumberStartIndex = 0;
             output.setText(expression);
         });
 
         backspaceButton.setOnClickListener(view -> {
             if (expression.length() > 0) {
                 expression = expression.substring(0, expression.length() - 1);
+                lastNumberStartIndex = 0;
                 output.setText(expression);
             }
         });
 
         equalsButton.setOnClickListener(view -> {
-            Expression expression = new Expression(this.expression);
-            double result = expression.calculate();
-            this.expression = Double.toString(result);
-            if (Double.isNaN(result)) {
-                Toast toast = Toast.makeText(this, "Invalid expression", Toast.LENGTH_SHORT);
-                toast.show();
+            if (expression.length() > 0) {
+                Expression expression = new Expression(this.expression);
+                double result = expression.calculate();
+                this.expression = Double.toString(result);
+                if (Double.isNaN(result)) {
+                    Toast toast = Toast.makeText(this, "Invalid expression", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                lastNumberStartIndex = 0;
+                output.setText(this.expression);
             }
-            output.setText(this.expression);
 
         });
 
         signButton.setOnClickListener(view -> {
-            if (expression.length() > 0) {
+            if (expression.length() > 2 && lastNumberStartIndex > 0) {
+                if (expression.charAt(lastNumberStartIndex - 1) == '-' && !NUMBERS.contains(expression.charAt(lastNumberStartIndex - 2))) {
+                    expression = expression.substring(0, lastNumberStartIndex - 1) + expression.substring(lastNumberStartIndex);
+                    lastNumberStartIndex--;
+                } else if (expression.charAt(lastNumberStartIndex - 1) != '+' && expression.charAt(lastNumberStartIndex - 1) != '-') {
+                    expression = expression.substring(0, lastNumberStartIndex) + "-" + expression.substring(lastNumberStartIndex);
+                    lastNumberStartIndex++;
+                }
+            }
+            if (expression.length() > 0 && lastNumberStartIndex == 0) {
                 if (expression.charAt(0) == '-') {
                     expression = expression.substring(1);
-                }
-                else {
+                } else {
                     expression = "-" + expression;
                 }
             }
